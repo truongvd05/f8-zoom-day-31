@@ -1,9 +1,9 @@
 {
   "tasks": [
     {
-      "id": "edca",
+      "id": "4890",
       "title": "rửa bát",
-      "description": "",
+      "description": "rửa 1 chậu bát",
       "category": "",
       "priority": "medium",
       "start": "",
@@ -11,6 +11,30 @@
       "dueDate": "",
       "color": "blue",
       "isCompleted": false
+    },
+    {
+      "id": "f4a6",
+      "title": "chạy 1",
+      "description": "chạy 100km",
+      "category": "",
+      "priority": "medium",
+      "start": "",
+      "end": "",
+      "dueDate": "",
+      "color": "blue",
+      "isCompleted": false
+    },
+    {
+      "id": "8c59",
+      "title": "bơi",
+      "description": "bơi 10km",
+      "category": "",
+      "priority": "medium",
+      "start": "",
+      "end": "",
+      "dueDate": "",
+      "color": "blue",
+      "isCompleted": true
     }
   ]
 }

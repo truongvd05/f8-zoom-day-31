@@ -104,6 +104,7 @@ ListTask.onclick = async function (e) {
             await patch(`http://localhost:3000/tasks/${taskId}`, {
                 isCompleted: res.isCompleted,
             });
+            render();
         } catch (error) {
             console.log(error);
         }
