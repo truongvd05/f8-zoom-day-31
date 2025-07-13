@@ -30,11 +30,12 @@ formData.onsubmit = async function (e) {
                     body: JSON.stringify(newTask),
                 }
             );
-
+            render();
             if (!response.ok) throw new Error("Cập nhật thất bại");
             console.log("Đã sửa task:", await response.json());
         } else {
             const response = await post("http://localhost:3000/tasks", newTask);
+            render();
         }
         formData.reset();
         editId = null;
@@ -181,7 +182,6 @@ async function post(url, data) {
         }
         const result = await response.json();
         formData.reset();
-        console.log("Đã thêm:", result);
         return result;
     } catch (error) {
         console.log(error);
@@ -201,13 +201,20 @@ async function send(url, method) {
     }
 }
 
-fetch("http://localhost:3000/tasks")
-    .then((res) => res.json())
-    .catch((error) => {
+async function getTask() {
+    try {
+        const res = await fetch("http://localhost:3000/tasks");
+        const data = await res.json();
+        return data;
+    } catch (error) {
         console.log(error);
-    });
-
-function render(tasks) {
+    }
+}
+getTask();
+async function render(tasks = null) {
+    if (!tasks) {
+        tasks = await getTask();
+    }
     const html = tasks
         .map(
             (task) =>
