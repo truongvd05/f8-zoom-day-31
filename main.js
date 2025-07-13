@@ -39,6 +39,7 @@ formData.onsubmit = async function (e) {
         formData.reset();
         editId = null;
         closeForm();
+        render();
     } catch (error) {
         console.log(error);
     }
@@ -59,6 +60,7 @@ ListTask.onclick = async function (e) {
                     method: "DELETE",
                 }
             );
+            render();
         } catch (error) {
             console.log(error);
         }
