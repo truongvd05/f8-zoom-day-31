@@ -1,15 +1,16 @@
 {
   "tasks": [
     {
-      "id": "0f11",
+      "id": "edca",
       "title": "rửa bát",
-      "description": "rửa 1k bát",
+      "description": "",
       "category": "",
       "priority": "medium",
       "start": "",
       "end": "",
       "dueDate": "",
-      "color": "purple"
+      "color": "blue",
+      "isCompleted": false
     }
   ]
 }

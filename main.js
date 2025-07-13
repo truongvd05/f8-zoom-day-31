@@ -12,23 +12,17 @@ const titleInput = $(".form-input");
 const btnSubmit = $(".btn-primary");
 const scrollForm = $(".modal");
 const searchInput = $(".search-input");
-const complete = $(".tab-button-complete");
 
 // console.log(complete);
 
+// id task
 let editId = null;
 
-complete.onclick = async function () {
-    try {
-        const response = await send();
-    } catch (error) {
-        console.log(error);
-    }
-};
 formData.onsubmit = async function (e) {
     e.preventDefault();
     const newTask = Object.fromEntries(new FormData(formData));
     try {
+        // edit task
         if (editId) {
             const response = await fetch(
                 `http://localhost:3000/tasks/${editId}`,
@@ -61,7 +55,7 @@ ListTask.onclick = async function (e) {
     const editBtn = e.target.closest(".edit-btn");
     const taskDelete = e.target.closest(".delete");
     const btnCompleted = e.target.closest(".complete");
-
+    // delete task
     if (taskDelete) {
         const taskItem = taskDelete.closest(".task-card");
         const taskId = taskItem?.dataset.id;
@@ -74,6 +68,7 @@ ListTask.onclick = async function (e) {
             console.log(error);
         }
     }
+    // edit task
     if (editBtn) {
         const formTitle = form.querySelector(".modal-title");
         const taskItem = editBtn.closest(".task-card");
@@ -90,7 +85,6 @@ ListTask.onclick = async function (e) {
         }
         if (formTitle) {
             formTitle.dataset.original = formTitle.textContent;
-
             formTitle.textContent = "Edit Task";
         }
         if (editBtn) {
@@ -99,6 +93,7 @@ ListTask.onclick = async function (e) {
         }
         openForm();
     }
+    // mark task
     if (btnCompleted) {
         const taskItem = btnCompleted.closest(".task-card");
         const taskId = taskItem?.dataset.id;
@@ -106,12 +101,8 @@ ListTask.onclick = async function (e) {
             const tasks = await fetch(`http://localhost:3000/tasks/${taskId}`);
             const res = await tasks.json();
             res.isCompleted = !res.isCompleted;
-            await fetch(`http://localhost:3000/tasks/${taskId}`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ isCompleted: res.isCompleted }),
+            await patch(`http://localhost:3000/tasks/${taskId}`, {
+                isCompleted: res.isCompleted,
             });
         } catch (error) {
             console.log(error);
