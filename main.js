@@ -12,6 +12,7 @@ const titleInput = $(".form-input");
 const btnSubmit = $(".btn-primary");
 const scrollForm = $(".modal");
 const searchInput = $(".search-input");
+const complete = $(".tab-button-complete");
 
 // console.log(complete);
 
@@ -64,6 +65,7 @@ ListTask.onclick = async function (e) {
                 `http://localhost:3000/tasks/${taskId}`,
                 "DELETE"
             );
+            render();
         } catch (error) {
             console.log(error);
         }
@@ -104,6 +106,7 @@ ListTask.onclick = async function (e) {
             await patch(`http://localhost:3000/tasks/${taskId}`, {
                 isCompleted: res.isCompleted,
             });
+            taskItem.classList.toggle("active");
             render();
         } catch (error) {
             console.log(error);

@@ -2,7 +2,7 @@
   "tasks": [
     {
       "id": "4890",
-      "title": "rửa bát",
+      "title": "rửa bát 1",
       "description": "rửa 1 chậu bát",
       "category": "",
       "priority": "medium",
@@ -13,28 +13,16 @@
       "isCompleted": false
     },
     {
-      "id": "f4a6",
-      "title": "chạy 1",
-      "description": "chạy 100km",
+      "id": "b52b",
+      "title": "chay",
+      "description": "chạy 10km",
       "category": "",
       "priority": "medium",
       "start": "",
       "end": "",
       "dueDate": "",
-      "color": "blue",
+      "color": "yellow",
       "isCompleted": false
-    },
-    {
-      "id": "8c59",
-      "title": "bơi",
-      "description": "bơi 10km",
-      "category": "",
-      "priority": "medium",
-      "start": "",
-      "end": "",
-      "dueDate": "",
-      "color": "blue",
-      "isCompleted": true
     }
   ]
 }
