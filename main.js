@@ -12,11 +12,19 @@ const titleInput = $(".form-input");
 const btnSubmit = $(".btn-primary");
 const scrollForm = $(".modal");
 const searchInput = $(".search-input");
+const complete = $(".tab-button-complete");
 
-// console.log(btnCompleted);
+// console.log(complete);
 
 let editId = null;
 
+complete.onclick = async function () {
+    try {
+        const response = await send();
+    } catch (error) {
+        console.log(error);
+    }
+};
 formData.onsubmit = async function (e) {
     e.preventDefault();
     const newTask = Object.fromEntries(new FormData(formData));
@@ -32,9 +40,12 @@ formData.onsubmit = async function (e) {
             );
             render();
             if (!response.ok) throw new Error("Cập nhật thất bại");
-            console.log("Đã sửa task:", await response.json());
         } else {
-            const response = await post("http://localhost:3000/tasks", newTask);
+            const response = await fetch("http://localhost:3000/tasks", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(newTask),
+            });
             render();
         }
         formData.reset();
@@ -55,13 +66,10 @@ ListTask.onclick = async function (e) {
         const taskItem = taskDelete.closest(".task-card");
         const taskId = taskItem?.dataset.id;
         try {
-            const response = await fetch(
+            const response = await send(
                 `http://localhost:3000/tasks/${taskId}`,
-                {
-                    method: "DELETE",
-                }
+                "DELETE"
             );
-            render();
         } catch (error) {
             console.log(error);
         }
@@ -105,7 +113,6 @@ ListTask.onclick = async function (e) {
                 },
                 body: JSON.stringify({ isCompleted: res.isCompleted }),
             });
-            render();
         } catch (error) {
             console.log(error);
         }
@@ -121,7 +128,7 @@ searchInput.oninput = async function (event) {
     // lưu giá trị input và xóa khoảng trắng
     const searchValue = event.target.value.trim().toLowerCase();
     try {
-        const todoTask = await send("GET", "http://localhost:3000/tasks");
+        const todoTask = await send("http://localhost:3000/tasks", "GET");
         const newTitle = todoTask.filter((task) =>
             task.title.includes(String(searchValue.toLowerCase()))
         );
@@ -155,23 +162,10 @@ function closeForm() {
     editIndex = null;
 }
 
-async function DLETE(url, data) {
+async function patch(url, data) {
     try {
         const response = await fetch(url, {
-            method: "DELETE",
-        });
-        if (!response.ok) {
-            throw new Error(`Lỗi HTTP: ${response.status}`);
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-async function post(url, data) {
-    try {
-        const response = await fetch(url, {
-            method: "POST",
+            method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -181,7 +175,7 @@ async function post(url, data) {
             throw new Error(`Lỗi HTTP: ${response.status}`);
         }
         const result = await response.json();
-        formData.reset();
+        formData?.reset?.();
         return result;
     } catch (error) {
         console.log(error);
@@ -208,6 +202,7 @@ async function getTask() {
         return data;
     } catch (error) {
         console.log(error);
+        return null;
     }
 }
 getTask();
@@ -215,6 +210,7 @@ async function render(tasks = null) {
     if (!tasks) {
         tasks = await getTask();
     }
+
     const html = tasks
         .map(
             (task) =>

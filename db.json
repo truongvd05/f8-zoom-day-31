@@ -1,26 +1,15 @@
 {
   "tasks": [
     {
-      "id": "a17f",
-      "title": "123",
-      "description": "456",
+      "id": "0f11",
+      "title": "rửa bát",
+      "description": "rửa 1k bát",
       "category": "",
       "priority": "medium",
       "start": "",
       "end": "",
       "dueDate": "",
-      "color": "blue"
-    },
-    {
-      "id": "c7c1",
-      "title": "123545",
-      "description": "666",
-      "category": "",
-      "priority": "medium",
-      "start": "",
-      "end": "",
-      "dueDate": "",
-      "color": "blue"
+      "color": "purple"
     }
   ]
 }
