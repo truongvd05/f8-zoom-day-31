@@ -1720,3 +1720,30 @@ body {
         text-align: center;
     }
 }
+
+.alert-toast,.alert-miss {
+  position: fixed;
+  top: 5vh;
+  right: 5vw;
+  z-index: 9999;
+  max-width: 90vw;
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 12px;
+  padding: 16px 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  align-items: center;
+  justify-content: space-between;
+  animation: fadeInUp 0.4s ease-out;
+  transition: all 0.3s linear;
+}
+
+.turn-off {
+    opacity: 1;
+    visibility: visible;
+}

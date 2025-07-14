@@ -1,18 +1,6 @@
 {
   "tasks": [
     {
-      "id": "4890",
-      "title": "rửa bát 1",
-      "description": "rửa 1 chậu bát",
-      "category": "",
-      "priority": "medium",
-      "start": "",
-      "end": "",
-      "dueDate": "",
-      "color": "blue",
-      "isCompleted": false
-    },
-    {
       "id": "b52b",
       "title": "chay",
       "description": "chạy 10km",
@@ -22,6 +10,30 @@
       "end": "",
       "dueDate": "",
       "color": "yellow",
+      "isCompleted": false
+    },
+    {
+      "id": "e6ac",
+      "title": "quét nhà",
+      "description": "",
+      "category": "",
+      "priority": "medium",
+      "start": "",
+      "end": "",
+      "dueDate": "",
+      "color": "blue",
+      "isCompleted": true
+    },
+    {
+      "id": "473c",
+      "title": "bơi",
+      "description": "bơi 10km",
+      "category": "",
+      "priority": "medium",
+      "start": "",
+      "end": "",
+      "dueDate": "",
+      "color": "blue",
       "isCompleted": false
     }
   ]

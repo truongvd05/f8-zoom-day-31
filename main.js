@@ -13,9 +13,16 @@ const btnSubmit = $(".btn-primary");
 const scrollForm = $(".modal");
 const searchInput = $(".search-input");
 const complete = $(".tab-button-complete");
+const closeModalOver = $(".modal-overlay");
+const body = document.body;
 
-// console.log(complete);
+console.log(formData);
 
+closeModalOver.onclick = function (e) {
+    if (!e.target.closest(".modal")) {
+        closeForm();
+    }
+};
 // id task
 let editId = null;
 
@@ -33,7 +40,6 @@ formData.onsubmit = async function (e) {
                     body: JSON.stringify(newTask),
                 }
             );
-            render();
             if (!response.ok) throw new Error("Cập nhật thất bại");
         } else {
             const response = await fetch("http://localhost:3000/tasks", {
@@ -41,7 +47,6 @@ formData.onsubmit = async function (e) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newTask),
             });
-            render();
         }
         formData.reset();
         editId = null;
@@ -205,7 +210,6 @@ async function render(tasks = null) {
     if (!tasks) {
         tasks = await getTask();
     }
-
     const html = tasks
         .map(
             (task) =>
